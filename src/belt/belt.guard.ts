@@ -6,7 +6,7 @@ export class BeltGuard implements CanActivate {
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
-    const request = context.switchToHttp().getRequest();
+    const request = context.switchToHttp().getRequest(); // eslint-disable-line
 
     // const hasBlackBelt = request.user.belts.includes('black');
 
