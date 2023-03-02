@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-export class CreateTodoDto {}
-=======
 import { MinLength } from 'class-validator';
 
 export class CreateTodoDto {
@@ -10,4 +7,3 @@ export class CreateTodoDto {
   // @IsEnum(['stars', 'stick'], { message: 'use correct weapon!' })
   content: string;
 }
->>>>>>> c98a55e (rebase commit)

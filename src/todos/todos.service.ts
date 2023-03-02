@@ -4,26 +4,6 @@ import { UpdateTodoDto } from './dto/update-todo.dto';
 
 @Injectable()
 export class TodosService {
-<<<<<<< HEAD
-  create(createTodoDto: CreateTodoDto) {
-    return 'This action adds a new todo';
-  }
-
-  findAll() {
-    return `This action returns all todos`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} todo`;
-  }
-
-  update(id: number, updateTodoDto: UpdateTodoDto) {
-    return `This action updates a #${id} todo`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} todo`;
-=======
   private todos = [
     { id: 0, title: 'todoA', content: 'stars' },
     { id: 1, title: 'todoB', content: 'stick' },
@@ -71,6 +51,5 @@ export class TodosService {
     this.todos = this.todos.filter((todo) => todo.id !== id);
 
     return toBeRemoved;
->>>>>>> c98a55e (rebase commit)
   }
 }
