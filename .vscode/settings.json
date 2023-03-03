@@ -1,4 +1,5 @@
 {
   "cSpell.diagnosticLevel": "Hint",
-  "prettier.semi": true
+  "prettier.semi": true,
+  "cSpell.words": ["todos"]
 }

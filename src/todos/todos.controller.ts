@@ -15,39 +15,56 @@ import { TodosService } from './todos.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 
+interface FindAllTodosQueryParams {
+  title?: string;
+  category?: string;
+}
+
 @Controller('todos')
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
 
   @Post()
-  create(@Body(new ValidationPipe()) createTodoDto: CreateTodoDto) {
-    return this.todosService.create(createTodoDto);
+  createTodo(@Body(new ValidationPipe()) createTodoDto: CreateTodoDto) {
+    return this.todosService.createNewTodo(createTodoDto);
   }
 
   @Get()
-  findAll(@Query('title') title?: string) {
-    return this.todosService.findAll(title);
+  getTodos(@Query() query: FindAllTodosQueryParams) {
+    const { title, category } = query;
+    if (title) {
+      return this.todosService.findAllTodosByTitle(title);
+    }
+    if (category) {
+      return this.todosService.findAllTodosByCategory(category);
+    }
+    return this.todosService.findAllTodos();
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  getTodoById(@Param('id', ParseIntPipe) id: number) {
     try {
-      return this.todosService.findOne(id);
+      return this.todosService.findTodoById(id);
     } catch (err) {
       throw new NotFoundException();
     }
   }
 
   @Patch(':id')
-  update(
+  updateTodoById(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateTodoDto: UpdateTodoDto,
   ) {
-    return this.todosService.update(id, updateTodoDto);
+    return this.todosService.updateTodoById(id, updateTodoDto);
+  }
+
+  @Delete()
+  removeAllTodos() {
+    return this.todosService.removeAllTodos();
   }
 
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.todosService.remove(id);
+  removeTodoById(@Param('id', ParseIntPipe) id: number) {
+    return this.todosService.removeTodoById(id);
   }
 }
